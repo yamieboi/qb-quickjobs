@@ -29,7 +29,7 @@ end
 
 --[[ AddEventHandler('QBCore:Client:OnPlayerLoaded', function() ]]
     for key, value in pairs(Cfg.Jobs) do
-        cache[#cache+1] = {['coords'] = value.pickup_coords,['text'] = value.pickup_3dtext }
+        cache[#cache+1] = {['coords'] = value.pickup_coords,['text'] = value.pickup_3dtext,['trigger_name_server'] = ''..value.job_name..'Pickup' }
     end
 --[[ end) ]]
 CreateThread(function()
@@ -38,6 +38,9 @@ CreateThread(function()
         local ProximityL = GetClosestPlantloop()
         if ProximityL ~= nil and #(ProximityL.coords - GetEntityCoords(PlayerPedId()) ) <= 2  and not IsPedInAnyVehicle(PlayerPedId(), false) then
          DrawText3D(ProximityL.coords.x, ProximityL.coords.y, ProximityL.coords.z, ProximityL.text)
+         if IsControlJustPressed(0,184) then
+             TriggerServerEvent(ProximityL.trigger_name_server)
+         end
         else 
           Wait(2000)
         end

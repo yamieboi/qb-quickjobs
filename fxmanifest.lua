@@ -1,0 +1,7 @@
+author 'yamie'
+fx_version 'cerulean'
+game 'gta5'
+description 'making jobs made easier lol'
+lua54 'yes'
+client_script 'client.lua'
+shared_script 'config.lua'

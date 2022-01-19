@@ -17,29 +17,27 @@ local function DrawText3D(x, y, z, text)
 end
 local function GetClosestPlantloop()
     local dist = 3
-
     for i = 1, #cache do
-        local distance = #(GetEntityCoords(PlayerPedId()) - cache[i])
+        local distance = #(GetEntityCoords(PlayerPedId()) - cache[i].coords)
         if distance < dist then
             Proximity = cache[i]
 
         end
     end
-
     return Proximity
 end
 
-AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
+--[[ AddEventHandler('QBCore:Client:OnPlayerLoaded', function() ]]
     for key, value in pairs(Cfg.Jobs) do
-        cache[#cache+1] = value.pickup_coords
+        cache[#cache+1] = {['coords'] = value.pickup_coords,['text'] = value.pickup_3dtext }
     end
-end)
+--[[ end) ]]
 CreateThread(function()
     while true do
         Wait(2)
         local ProximityL = GetClosestPlantloop()
-        if ProximityL ~= nil and #(ProximityL - GetEntityCoords(PlayerPedId()) ) <= 2  and not IsPedInAnyVehicle(PlayerPedId(), false) then
-         DrawText3D(ProximityL.x, ProximityL.y, ProximityL.z, '~r~E~w~ - Destroy Plant')
+        if ProximityL ~= nil and #(ProximityL.coords - GetEntityCoords(PlayerPedId()) ) <= 2  and not IsPedInAnyVehicle(PlayerPedId(), false) then
+         DrawText3D(ProximityL.coords.x, ProximityL.coords.y, ProximityL.coords.z, ProximityL.text)
         else 
           Wait(2000)
         end

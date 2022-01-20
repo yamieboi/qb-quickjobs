@@ -1,8 +1,10 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 local cacheOne = {}
 local cacheTwo = {}
+local cacheThree = {}
 local Proximity = nil
 local ProximityTwo = nil
+local ProximityThree = nil
 local in_progress = false
 local DICT = nil
 local ANIM = nil
@@ -41,6 +43,17 @@ local function LoopDistanceCheckTwo()
         end
     end
     return ProximityTwo
+end
+local function LoopDistanceCheckThree()
+    local dist = 3
+    for i = 1, #cacheThree do
+        local distance = #(GetEntityCoords(PlayerPedId()) - cacheThree[i].coords)
+        if distance < dist then
+            ProximityThree = cacheThree[i]
+
+        end
+    end
+    return ProximityThree
 end
 local function ProgressBarPickup(Event,Name,Duration,AnimDict,AnimName,NeededItem)
  
@@ -107,7 +120,7 @@ local function ProgressBarPickup(Event,Name,Duration,AnimDict,AnimName,NeededIte
     end
 
 end
---[[ AddEventHandler('QBCore:Client:OnPlayerLoaded', function() ]]
+AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
     for key, value in pairs(Cfg.Jobs) do
 
 
@@ -162,6 +175,30 @@ end
             }
          end
         end
+        if value.three ~= nil then
+            Three = value.three
+           if Three.progressbar_enabled ~= nil and Three.progressbar_enabled then
+            cacheThree[#cacheThree+1] = {
+                  ['coords'] = Three.coords,
+                  ['text'] = Three.text_3dlabel,
+                  ['trigger_name_server'] = ''..value.job_name..'TWO',
+                  ['item_needed'] = Three.item_needed,
+                  ['progress_enabled'] = true,
+                  ['progressbar_label'] = Three.progressbar_label,
+                  ['progressbar_duration'] = Three.progressbar_duration,
+                  ['progressbar_animdict'] = Three.progressbar_animdict,
+                  ['progressbar_animname'] = Three.progressbar_animname,
+              }
+           else
+              cacheThree[#cacheThree+1] = {
+                  ['coords'] = Three.coords,
+                  ['text'] = Three.text_3dlabel,
+                  ['trigger_name_server'] = ''..value.job_name..'TWO',
+                  ['item_needed'] = Three.item_needed,
+                  ['progress_enabled'] = false,
+              }
+           end
+          end
 
         if value.blip_enabled ~= nil and value.blip_enabled  then
             local blip = AddBlipForCoord(value.blip_coords.x, value.blip_coords.y, value.blip_coords.z)
@@ -184,8 +221,28 @@ end
             AddTextComponentString(One.blip_label)
             EndTextCommandSetBlipName(blip)
         end
+        if Two.blip_enabled ~= nil and Two.blip_enabled then
+            local blip = AddBlipForCoord(Two.coords.x, Two.coords.y, Two.coords.z)
+            SetBlipSprite(blip, Two.blip_sprite)
+            SetBlipAsShortRange(blip, true)
+            SetBlipScale(blip, Two.blip_size)
+            SetBlipColour(blip, Two.blip_colour)
+            BeginTextCommandSetBlipName("STRING")
+            AddTextComponentString(Two.blip_label)
+            EndTextCommandSetBlipName(blip)
+        end
+        if Three.blip_enabled ~= nil and Three.blip_enabled then
+            local blip = AddBlipForCoord(Three.coords.x, Three.coords.y, Three.coords.z)
+            SetBlipSprite(blip, Three.blip_sprite)
+            SetBlipAsShortRange(blip, true)
+            SetBlipScale(blip, Three.blip_size)
+            SetBlipColour(blip, Three.blip_colour)
+            BeginTextCommandSetBlipName("STRING")
+            AddTextComponentString(Three.blip_label)
+            EndTextCommandSetBlipName(blip)
+        end
     end
---[[ end) ]]
+end)
 local function NoProgress(eventname,NeededItemLOL)
     if NeededItemLOL ~= nil then
         QBCore.Functions.TriggerCallback('QBCore:HasItem', function(result)
@@ -196,8 +253,6 @@ local function NoProgress(eventname,NeededItemLOL)
     else
         TriggerServerEvent(eventname)
     end
-    
-    
 end
 CreateThread(function()
     while true do
@@ -211,8 +266,7 @@ CreateThread(function()
             else
                 NoProgress(ProximityOne.trigger_name_server,ProximityOne.item_needed)
             end
-            
-         end
+        end
         else 
           Wait(2000)
         end 
@@ -230,8 +284,25 @@ CreateThread(function()
             else
                 NoProgress(ProximityTwo.trigger_name_server,ProximityTwo.item_needed)
             end
-            
-         end
+        end
+        else 
+          Wait(2000)
+        end 
+    end
+end)
+CreateThread(function()
+    while true do
+        Wait(2)
+        local ProximityThree = LoopDistanceCheckThree()
+        if not in_progress and ProximityThree ~= nil and #(ProximityThree.coords - GetEntityCoords(PlayerPedId()) ) <= 2  and not IsPedInAnyVehicle(PlayerPedId(), false) then
+         DrawText3D(ProximityThree.coords.x, ProximityThree.coords.y, ProximityThree.coords.z, ProximityThree.text)
+         if IsControlJustPressed(0,184) then
+            if ProximityThree.progress_enabled then
+                ProgressBarPickup(ProximityThree.trigger_name_server,ProximityThree.progressbar_label,ProximityThree.progressbar_duration,ProximityThree.progressbar_animdict,ProximityThree.progressbar_animname,ProximityThree.item_needed)
+            else
+                NoProgress(ProximityThree.trigger_name_server,ProximityThree.item_needed)
+            end
+        end
         else 
           Wait(2000)
         end 

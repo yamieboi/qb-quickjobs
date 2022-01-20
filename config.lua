@@ -43,6 +43,23 @@ Cfg.Jobs = {
             ['progressbar_duration'] = 10000,         
             ['progressbar_animdict'] = nil, -- nil , "random@shop_robbery"
             ['progressbar_animname'] = nil, -- nil , "robbery_action_b"
+        },
+        ['three'] = {
+            ['text_3dlabel'] = '~r~[E]~w~ Spot3',
+            ['blip_enabled'] = true,
+            ['blip_label'] = 'STEP 3',
+            ['blip_sprite'] = 1,
+            ['blip_colour'] = 0,
+            ['blip_size'] = 0.5,
+            ['coords'] = vector3(202.19, -800.02, 31.08),
+            ['item_needed'] = nil,
+            ['item_take'] = nil,
+            ['item_give'] = 'water_bottle',
+            ['progressbar_enabled'] = false, --
+            ['progressbar_label'] = 'Proccessing',
+            ['progressbar_duration'] = 10000,         
+            ['progressbar_animdict'] = nil, -- nil , "random@shop_robbery"
+            ['progressbar_animname'] = nil, -- nil , "robbery_action_b"
         }
     },
 }

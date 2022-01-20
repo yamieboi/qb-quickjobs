@@ -97,17 +97,28 @@ end
 --[[ AddEventHandler('QBCore:Client:OnPlayerLoaded', function() ]]
     for key, value in pairs(Cfg.Jobs) do
         local One = value.one
-        cacheOne[#cacheOne+1] = {
-            ['coords'] = value.one.one_coords,
-            ['text'] = value.one.one_3dtext,
-            ['trigger_name_server'] = ''..value.job_name..'Pickup',
-            ['item_needed'] = value.one.item_needed,
-            ['one_progress_name'] = value.one.one_progress_name,
-            ['one_progress_duration'] = value.one.one_progress_duration,
-            ['one_progress_animation_dict'] = value.one.one_progress_animation_dict, 
-            ['one_progress_animation_name'] = value.one.one_progress_animation_name,
+        if One.progressbar_enabled ~= nil and One.progressbar_enabled then
+            cacheOne[#cacheOne+1] = {
+                ['coords'] = One.coords,
+                ['text'] = One.one_3dtext,
+                ['trigger_name_server'] = ''..value.job_name..'Pickup',
+                ['item_needed'] = One.item_needed,
+                ['progress_enabled'] = true,
+                ['progressbar_label'] = One.progressbar_label,
+                ['progressbar_duration'] = One.progressbar_duration,
+                ['progressbar_animdict'] = One.progressbar_animdict,
+                ['progressbar_animname'] = One.progressbar_animname,
+              }
+        else
+            cacheOne[#cacheOne+1] = {
+                ['coords'] = One.coords,
+                ['text'] = One.one_3dtext,
+                ['trigger_name_server'] = ''..value.job_name..'Pickup',
+                ['item_needed'] = One.item_needed,
+                ['progress_enabled'] = false,
+              }
+        end
 
-        }
         if value.blip_enabled ~= nil and value.blip_enabled  then
             local blip = AddBlipForCoord(value.blip_coords.x, value.blip_coords.y, value.blip_coords.z)
             SetBlipSprite(blip, value.blip_sprite)
@@ -120,7 +131,7 @@ end
         end
         
         if One.blip_enabled ~= nil and One.blip_enabled then
-            local blip = AddBlipForCoord(One.one_coords.x, One.one_coords.y, One.one_coords.z)
+            local blip = AddBlipForCoord(One.coords.x, One.coords.y, One.coords.z)
             SetBlipSprite(blip, One.blip_sprite)
             SetBlipAsShortRange(blip, true)
             SetBlipScale(blip, One.blip_size)
@@ -131,6 +142,19 @@ end
         end
     end
 --[[ end) ]]
+local function NoProgress(eventname,NeededItemLOL)
+    if NeededItemLOL ~= nil then
+        QBCore.Functions.TriggerCallback('QBCore:HasItem', function(result)
+            if result then
+                TriggerServerEvent(eventname)
+            else QBCore.Functions.Notify("You're missing an item!", "error") end
+        end,NeededItemLOL)
+    else
+        TriggerServerEvent(eventname)
+    end
+    
+    
+end
 CreateThread(function()
     while true do
         Wait(2)
@@ -138,7 +162,12 @@ CreateThread(function()
         if not in_progress and ProximityL ~= nil and #(ProximityL.coords - GetEntityCoords(PlayerPedId()) ) <= 2  and not IsPedInAnyVehicle(PlayerPedId(), false) then
          DrawText3D(ProximityL.coords.x, ProximityL.coords.y, ProximityL.coords.z, ProximityL.text)
          if IsControlJustPressed(0,184) then
-            ProgressBarPickup(ProximityL.trigger_name_server,ProximityL.one_progress_name,ProximityL.one_progress_duration,ProximityL.one_progress_animation_dict,ProximityL.one_progress_animation_name,ProximityL.item_needed)
+            if ProximityL.progress_enabled then
+                ProgressBarPickup(ProximityL.trigger_name_server,ProximityL.progressbar_label,ProximityL.progressbar_duration,ProximityL.progressbar_animdict,ProximityL.progressbar_animname,ProximityL.item_needed)
+            else
+                NoProgress(ProximityL.trigger_name_server,ProximityL.item_needed)
+            end
+            
          end
         else 
           Wait(2000)

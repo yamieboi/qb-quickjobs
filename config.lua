@@ -45,9 +45,9 @@ Cfg.Jobs = {
          ['item_needed'] = nil, --- item needed to start step, nil means no need any item to start
          ---------
          -------- what item to take 
-         ['item_take'] = 'loltake',
+         ['item_take'] = 'water_bottle',
          ---------- what item to give
-         ['item_give'] = 'lolgibe',
+         ['item_give'] = nil,
          ------- progress bar data
          ['progressbar_enabled'] = true, --
          ['progressbar_label'] = 'Proccessing',
@@ -69,9 +69,9 @@ Cfg.Jobs = {
             ['item_needed'] = nil, --- item needed to start step, nil means no need any item to start
             ---------
             -------- what item to take 
-            ['item_take'] = 'loltake',
+            ['item_take'] = nil,
             ---------- what item to give
-            ['item_give'] = 'lolgibe',
+            ['item_give'] = 'water_bottle',
             ------- progress bar data
             ['progressbar_enabled'] = true, --
             ['progressbar_label'] = 'Proccessing',

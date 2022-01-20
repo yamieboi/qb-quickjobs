@@ -96,6 +96,7 @@ local function ProgressBarPickup(Event,Name,Duration,AnimDict,AnimName,NeededIte
 end
 --[[ AddEventHandler('QBCore:Client:OnPlayerLoaded', function() ]]
     for key, value in pairs(Cfg.Jobs) do
+        local One = value.one
         cacheOne[#cacheOne+1] = {
             ['coords'] = value.one.one_coords,
             ['text'] = value.one.one_3dtext,
@@ -107,6 +108,27 @@ end
             ['one_progress_animation_name'] = value.one.one_progress_animation_name,
 
         }
+        if value.blip_enabled ~= nil and value.blip_enabled  then
+            local blip = AddBlipForCoord(value.blip_coords.x, value.blip_coords.y, value.blip_coords.z)
+            SetBlipSprite(blip, value.blip_sprite)
+            SetBlipAsShortRange(blip, true)
+            SetBlipScale(blip, value.blip_size)
+            SetBlipColour(blip, value.blip_colour)
+            BeginTextCommandSetBlipName("STRING")
+            AddTextComponentString(value.job_name)
+            EndTextCommandSetBlipName(blip)
+        end
+        
+        if One.blip_enabled ~= nil and One.blip_enabled then
+            local blip = AddBlipForCoord(One.one_coords.x, One.one_coords.y, One.one_coords.z)
+            SetBlipSprite(blip, One.blip_sprite)
+            SetBlipAsShortRange(blip, true)
+            SetBlipScale(blip, One.blip_size)
+            SetBlipColour(blip, One.blip_colour)
+            BeginTextCommandSetBlipName("STRING")
+            AddTextComponentString(One.blip_label)
+            EndTextCommandSetBlipName(blip)
+        end
     end
 --[[ end) ]]
 CreateThread(function()

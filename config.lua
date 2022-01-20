@@ -3,8 +3,9 @@ Cfg = {}
 Cfg.Jobs = {
     ['job1'] = {
         ['job_name'] = 'shuor',
-        
+
         ['blip_enabled'] = false,
+        ['blip_coords'] = vector3(204.27, -794.18, 31.05),
         ['blip_sprite'] = 1,
         ['blip_colour'] = 0,
         ['blip_size'] = 0.5,
@@ -33,15 +34,23 @@ Cfg.Jobs = {
     },
     ['job2'] = {
         ['job_name'] = 'km',
-
-        ['blip_enabled'] = true,
+        -- main job blip, blip name is the job_name, can delete or just set to false 
+        ['blip_enabled'] = false,
+        ['blip_coords'] = vector3(204.27, -794.18, 31.05),
         ['blip_sprite'] = 1,
         ['blip_colour'] = 0,
         ['blip_size'] = 0.5,
 
         ['one'] = {
          ['one_3dtext'] = '~r~[E]~w~ PickupSpot2',
-         ['one_coords'] = vector3(204.27, -794.18, 31.05),
+         -- blip, can delete or just set to false 
+         ['blip_enabled'] = true,
+         ['blip_label'] = 'SHEEEEESH STEP 1',
+         ['blip_sprite'] = 1,
+         ['blip_colour'] = 0,
+         ['blip_size'] = 0.5,
+         ---------------
+         ['one_coords'] = vector3(204.27, -794.18, 31.05),-- this is also used for the blip
          ['item_needed'] = nil, --- item needed to start step, nil means no need any item to start
          ['one_item_take'] = 'loltake',
          ['one_item_give'] = 'lolgibe',
@@ -63,7 +72,9 @@ Cfg.Jobs = {
     },
     ['job3'] = {
         ['job_name'] = 'kutta',
+        
         ['blip_enabled'] = false,
+        ['blip_coords'] = vector3(204.27, -794.18, 31.05),
         ['blip_sprite'] = 1,
         ['blip_colour'] = 0,
         ['blip_size'] = 0.5,

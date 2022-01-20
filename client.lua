@@ -1,6 +1,8 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 local cacheOne = {}
+local cacheTwo = {}
 local Proximity = nil
+local ProximityTwo = nil
 local in_progress = false
 local DICT = nil
 local ANIM = nil
@@ -28,6 +30,17 @@ local function LoopDistanceCheck()
         end
     end
     return Proximity
+end
+local function LoopDistanceCheckTwo()
+    local dist = 3
+    for i = 1, #cacheTwo do
+        local distance = #(GetEntityCoords(PlayerPedId()) - cacheTwo[i].coords)
+        if distance < dist then
+            ProximityTwo = cacheTwo[i]
+
+        end
+    end
+    return ProximityTwo
 end
 local function ProgressBarPickup(Event,Name,Duration,AnimDict,AnimName,NeededItem)
  
@@ -96,12 +109,18 @@ local function ProgressBarPickup(Event,Name,Duration,AnimDict,AnimName,NeededIte
 end
 --[[ AddEventHandler('QBCore:Client:OnPlayerLoaded', function() ]]
     for key, value in pairs(Cfg.Jobs) do
-        local One = value.one
-        if One.progressbar_enabled ~= nil and One.progressbar_enabled then
+
+
+
+  
+
+        if value.one ~= nil then 
+             One = value.one 
+          if One.progressbar_enabled ~= nil and One.progressbar_enabled then
             cacheOne[#cacheOne+1] = {
                 ['coords'] = One.coords,
-                ['text'] = One.one_3dtext,
-                ['trigger_name_server'] = ''..value.job_name..'Pickup',
+                ['text'] = One.text_3dlabel,
+                ['trigger_name_server'] = ''..value.job_name..'ONE',
                 ['item_needed'] = One.item_needed,
                 ['progress_enabled'] = true,
                 ['progressbar_label'] = One.progressbar_label,
@@ -109,14 +128,39 @@ end
                 ['progressbar_animdict'] = One.progressbar_animdict,
                 ['progressbar_animname'] = One.progressbar_animname,
               }
-        else
+          else
             cacheOne[#cacheOne+1] = {
                 ['coords'] = One.coords,
-                ['text'] = One.one_3dtext,
-                ['trigger_name_server'] = ''..value.job_name..'Pickup',
+                ['text'] = One.text_3dlabel,
+                ['trigger_name_server'] = ''..value.job_name..'ONE',
                 ['item_needed'] = One.item_needed,
                 ['progress_enabled'] = false,
               }
+          end
+        end
+        if value.two ~= nil then
+          Two = value.two
+         if Two.progressbar_enabled ~= nil and Two.progressbar_enabled then
+            cacheTwo[#cacheTwo+1] = {
+                ['coords'] = Two.coords,
+                ['text'] = Two.text_3dlabel,
+                ['trigger_name_server'] = ''..value.job_name..'TWO',
+                ['item_needed'] = Two.item_needed,
+                ['progress_enabled'] = true,
+                ['progressbar_label'] = Two.progressbar_label,
+                ['progressbar_duration'] = Two.progressbar_duration,
+                ['progressbar_animdict'] = Two.progressbar_animdict,
+                ['progressbar_animname'] = Two.progressbar_animname,
+            }
+         else
+            cacheTwo[#cacheTwo+1] = {
+                ['coords'] = Two.coords,
+                ['text'] = Two.text_3dlabel,
+                ['trigger_name_server'] = ''..value.job_name..'TWO',
+                ['item_needed'] = Two.item_needed,
+                ['progress_enabled'] = false,
+            }
+         end
         end
 
         if value.blip_enabled ~= nil and value.blip_enabled  then
@@ -158,14 +202,14 @@ end
 CreateThread(function()
     while true do
         Wait(2)
-        local ProximityL = LoopDistanceCheck()
-        if not in_progress and ProximityL ~= nil and #(ProximityL.coords - GetEntityCoords(PlayerPedId()) ) <= 2  and not IsPedInAnyVehicle(PlayerPedId(), false) then
-         DrawText3D(ProximityL.coords.x, ProximityL.coords.y, ProximityL.coords.z, ProximityL.text)
+        local ProximityOne = LoopDistanceCheck()
+        if not in_progress and ProximityOne ~= nil and #(ProximityOne.coords - GetEntityCoords(PlayerPedId()) ) <= 2  and not IsPedInAnyVehicle(PlayerPedId(), false) then
+         DrawText3D(ProximityOne.coords.x, ProximityOne.coords.y, ProximityOne.coords.z, ProximityOne.text)
          if IsControlJustPressed(0,184) then
-            if ProximityL.progress_enabled then
-                ProgressBarPickup(ProximityL.trigger_name_server,ProximityL.progressbar_label,ProximityL.progressbar_duration,ProximityL.progressbar_animdict,ProximityL.progressbar_animname,ProximityL.item_needed)
+            if ProximityOne.progress_enabled then
+                ProgressBarPickup(ProximityOne.trigger_name_server,ProximityOne.progressbar_label,ProximityOne.progressbar_duration,ProximityOne.progressbar_animdict,ProximityOne.progressbar_animname,ProximityOne.item_needed)
             else
-                NoProgress(ProximityL.trigger_name_server,ProximityL.item_needed)
+                NoProgress(ProximityOne.trigger_name_server,ProximityOne.item_needed)
             end
             
          end
@@ -174,3 +218,23 @@ CreateThread(function()
         end 
     end
 end)
+CreateThread(function()
+    while true do
+        Wait(2)
+        local ProximityTwo = LoopDistanceCheckTwo()
+        if not in_progress and ProximityTwo ~= nil and #(ProximityTwo.coords - GetEntityCoords(PlayerPedId()) ) <= 2  and not IsPedInAnyVehicle(PlayerPedId(), false) then
+         DrawText3D(ProximityTwo.coords.x, ProximityTwo.coords.y, ProximityTwo.coords.z, ProximityTwo.text)
+         if IsControlJustPressed(0,184) then
+            if ProximityTwo.progress_enabled then
+                ProgressBarPickup(ProximityTwo.trigger_name_server,ProximityTwo.progressbar_label,ProximityTwo.progressbar_duration,ProximityTwo.progressbar_animdict,ProximityTwo.progressbar_animname,ProximityTwo.item_needed)
+            else
+                NoProgress(ProximityTwo.trigger_name_server,ProximityTwo.item_needed)
+            end
+            
+         end
+        else 
+          Wait(2000)
+        end 
+    end
+end)
+

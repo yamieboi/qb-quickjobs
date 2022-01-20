@@ -61,13 +61,13 @@ end
 --[[ AddEventHandler('QBCore:Client:OnPlayerLoaded', function() ]]
     for key, value in pairs(Cfg.Jobs) do
         cache[#cache+1] = {
-            ['coords'] = value.pickup_coords,
-            ['text'] = value.pickup_3dtext,
+            ['coords'] = value.one.pickup_coords,
+            ['text'] = value.one.pickup_3dtext,
             ['trigger_name_server'] = ''..value.job_name..'Pickup',
-            ['pickup_progress_name'] = value.pickup_progress_name,
-            ['pickup_progress_duration'] = value.pickup_progress_duration,
-            ['pickup_progress_animation_dict'] = value.pickup_progress_animation_dict, 
-            ['pickup_progress_animation_name'] = value.pickup_progress_animation_name,
+            ['pickup_progress_name'] = value.one.pickup_progress_name,
+            ['pickup_progress_duration'] = value.one.pickup_progress_duration,
+            ['pickup_progress_animation_dict'] = value.one.pickup_progress_animation_dict, 
+            ['pickup_progress_animation_name'] = value.one.pickup_progress_animation_name,
 
         }
     end

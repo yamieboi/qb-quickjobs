@@ -18,11 +18,17 @@ Cfg.Jobs = {
          ['blip_colour'] = 0,
          ['blip_size'] = 0.5,
          ['coords'] = vector3(204.27, -794.18, 31.05),
+
          ['give_money_account'] = 'cash', -- cash , bank
          ['give_money_amount'] = 5000, 
+
          ['item_needed'] = nil,
+         ['item_needed_amount'] = 1,
          ['item_take'] = 'water_bottle',
+         ['item_take_amount'] = 5,
          ['item_give'] = nil,
+         ['item_give_amount'] = 1,
+
          ['progressbar_enabled'] = true, --
          ['progressbar_label'] = 'Proccessing',
          ['progressbar_duration'] = 10000,         

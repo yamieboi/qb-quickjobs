@@ -120,7 +120,7 @@ local function ProgressBarPickup(Event,Name,Duration,AnimDict,AnimName,NeededIte
     end
 
 end
-AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
+--[[ AddEventHandler('QBCore:Client:OnPlayerLoaded', function() ]]
     for key, value in pairs(Cfg.Jobs) do
         if value.one ~= nil then 
              One = value.one 
@@ -237,7 +237,7 @@ AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
             EndTextCommandSetBlipName(blip)
         end
     end
-end)
+--[[ end) ]]
 local function NoProgress(eventname,NeededItemLOL)
     if NeededItemLOL ~= nil then
         QBCore.Functions.TriggerCallback('QBCore:HasItem', function(result)

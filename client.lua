@@ -23,7 +23,7 @@ local function DrawText3D(x, y, z, text)
     ClearDrawOrigin()
 end
 local function LoopDistanceCheck()
-    local dist = 3
+    local dist = 2
     for i = 1, #cacheOne do
         local distance = #(GetEntityCoords(PlayerPedId()) - cacheOne[i].coords)
         if distance < dist then
@@ -34,7 +34,7 @@ local function LoopDistanceCheck()
     return Proximity
 end
 local function LoopDistanceCheckTwo()
-    local dist = 3
+    local dist = 2
     for i = 1, #cacheTwo do
         local distance = #(GetEntityCoords(PlayerPedId()) - cacheTwo[i].coords)
         if distance < dist then
@@ -45,7 +45,7 @@ local function LoopDistanceCheckTwo()
     return ProximityTwo
 end
 local function LoopDistanceCheckThree()
-    local dist = 3
+    local dist = 2
     for i = 1, #cacheThree do
         local distance = #(GetEntityCoords(PlayerPedId()) - cacheThree[i].coords)
         if distance < dist then
@@ -122,11 +122,6 @@ local function ProgressBarPickup(Event,Name,Duration,AnimDict,AnimName,NeededIte
 end
 AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
     for key, value in pairs(Cfg.Jobs) do
-
-
-
-  
-
         if value.one ~= nil then 
              One = value.one 
           if One.progressbar_enabled ~= nil and One.progressbar_enabled then
@@ -181,7 +176,7 @@ AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
             cacheThree[#cacheThree+1] = {
                   ['coords'] = Three.coords,
                   ['text'] = Three.text_3dlabel,
-                  ['trigger_name_server'] = ''..value.job_name..'TWO',
+                  ['trigger_name_server'] = ''..value.job_name..'THREE',
                   ['item_needed'] = Three.item_needed,
                   ['progress_enabled'] = true,
                   ['progressbar_label'] = Three.progressbar_label,
@@ -193,7 +188,7 @@ AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
               cacheThree[#cacheThree+1] = {
                   ['coords'] = Three.coords,
                   ['text'] = Three.text_3dlabel,
-                  ['trigger_name_server'] = ''..value.job_name..'TWO',
+                  ['trigger_name_server'] = ''..value.job_name..'THREE',
                   ['item_needed'] = Three.item_needed,
                   ['progress_enabled'] = false,
               }
@@ -258,7 +253,7 @@ CreateThread(function()
     while true do
         Wait(2)
         local ProximityOne = LoopDistanceCheck()
-        if not in_progress and ProximityOne ~= nil and #(ProximityOne.coords - GetEntityCoords(PlayerPedId()) ) <= 2  and not IsPedInAnyVehicle(PlayerPedId(), false) then
+        if not in_progress and ProximityOne ~= nil and #(ProximityOne.coords - GetEntityCoords(PlayerPedId()) ) <= 1.5  and not IsPedInAnyVehicle(PlayerPedId(), false) then
          DrawText3D(ProximityOne.coords.x, ProximityOne.coords.y, ProximityOne.coords.z, ProximityOne.text)
          if IsControlJustPressed(0,184) then
             if ProximityOne.progress_enabled then
@@ -276,7 +271,7 @@ CreateThread(function()
     while true do
         Wait(2)
         local ProximityTwo = LoopDistanceCheckTwo()
-        if not in_progress and ProximityTwo ~= nil and #(ProximityTwo.coords - GetEntityCoords(PlayerPedId()) ) <= 2  and not IsPedInAnyVehicle(PlayerPedId(), false) then
+        if not in_progress and ProximityTwo ~= nil and #(ProximityTwo.coords - GetEntityCoords(PlayerPedId()) ) <= 1.5  and not IsPedInAnyVehicle(PlayerPedId(), false) then
          DrawText3D(ProximityTwo.coords.x, ProximityTwo.coords.y, ProximityTwo.coords.z, ProximityTwo.text)
          if IsControlJustPressed(0,184) then
             if ProximityTwo.progress_enabled then
@@ -294,7 +289,7 @@ CreateThread(function()
     while true do
         Wait(2)
         local ProximityThree = LoopDistanceCheckThree()
-        if not in_progress and ProximityThree ~= nil and #(ProximityThree.coords - GetEntityCoords(PlayerPedId()) ) <= 2  and not IsPedInAnyVehicle(PlayerPedId(), false) then
+        if not in_progress and ProximityThree ~= nil and #(ProximityThree.coords - GetEntityCoords(PlayerPedId()) ) <= 1.5  and not IsPedInAnyVehicle(PlayerPedId(), false) then
          DrawText3D(ProximityThree.coords.x, ProximityThree.coords.y, ProximityThree.coords.z, ProximityThree.text)
          if IsControlJustPressed(0,184) then
             if ProximityThree.progress_enabled then

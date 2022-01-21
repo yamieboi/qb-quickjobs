@@ -4,7 +4,7 @@ Cfg.Jobs = {
 
     ['example_job'] = {
         ['job_name'] = 'Example Job Name',
-        ['blip_enabled'] = true,
+        ['blip_enabled'] = false,
         ['blip_coords'] = vector3(204.27, -794.18, 31.05),
         ['blip_sprite'] = 1,
         ['blip_colour'] = 0,

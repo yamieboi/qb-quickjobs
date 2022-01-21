@@ -1,5 +1,5 @@
 local QBCore = exports['qb-core']:GetCoreObject()
-
+local item_removed = false
 for key, value in pairs(Cfg.Jobs) do
     if value.one then
         RegisterNetEvent('' .. value.job_name .. 'ONE', function()
@@ -140,6 +140,13 @@ for key, value in pairs(Cfg.Jobs) do
                     if One.item_take_amount and One.item_take_amount > 0 then
                         if Player.Functions.RemoveItem(One.item_take, One.item_take_amount) then
                             TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[One.item_take], 'remove')
+                            if One.give_money_amount and One.give_money_amount > 0 and One.give_money_account  then
+                                if One.give_money_account == 'cash' then
+                                    Player.Functions.AddMoney("cash", One.give_money_amount)                  
+                                elseif One.give_money_account == 'bank' then
+                                    Player.Functions.AddMoney("bank", One.give_money_amount)                    
+                                end
+                            end
                             if One.item_give ~= nil then
                                 if One.item_give_amount and One.item_give_amount > 0 then
                                     if Player.Functions.AddItem(One.item_give, item_give_amount) then
@@ -161,6 +168,13 @@ for key, value in pairs(Cfg.Jobs) do
                         end
                     else
                         if Player.Functions.RemoveItem(One.item_take, 1) then
+                            if One.give_money_amount and One.give_money_amount > 0 and One.give_money_account  then
+                                if One.give_money_account == 'cash' then
+                                    Player.Functions.AddMoney("cash", One.give_money_amount)                  
+                                elseif One.give_money_account == 'bank' then
+                                    Player.Functions.AddMoney("bank", One.give_money_amount)                    
+                                end
+                            end
                             TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[One.item_take], 'remove')
                             if One.item_give ~= nil then
                                 if Player.Functions.AddItem(One.item_give, 1) then
@@ -175,6 +189,13 @@ for key, value in pairs(Cfg.Jobs) do
                     end
 
                 else
+                    if One.give_money_amount and One.give_money_amount > 0 and One.give_money_account  then
+                        if One.give_money_account == 'cash' then
+                            Player.Functions.AddMoney("cash", One.give_money_amount)                  
+                        elseif One.give_money_account == 'bank' then
+                            Player.Functions.AddMoney("bank", One.give_money_amount)                    
+                        end
+                    end
                     if One.item_give ~= nil then
                         if One.item_give_amount and One.item_give_amount > 0 then
                             if Player.Functions.AddItem(One.item_give, One.item_give_amount) then
@@ -183,6 +204,7 @@ for key, value in pairs(Cfg.Jobs) do
                                 TriggerClientEvent("QBCore:Notify", src, "ERROR! Something Went Wrong", "error")
                             end
                         else
+
                             if Player.Functions.AddItem(One.item_give, 1) then
                                 TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[One.item_give], 'add')
                             else
@@ -194,13 +216,7 @@ for key, value in pairs(Cfg.Jobs) do
                 end          
             end
 
-            if One.give_money_amount and One.give_money_amount > 0 and One.give_money_account  then
-                if One.give_money_account == 'cash' then
-                    Player.Functions.AddMoney("cash", One.give_money_amount)                  
-                elseif One.give_money_account == 'bank' then
-                    Player.Functions.AddMoney("bank", One.give_money_amount)                    
-                end
-            end
+
         end)
     end
     if value.two then
@@ -342,6 +358,13 @@ for key, value in pairs(Cfg.Jobs) do
                     if Two.item_take_amount and Two.item_take_amount > 0 then
                         if Player.Functions.RemoveItem(Two.item_take, Two.item_take_amount) then
                             TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Two.item_take], 'remove')
+                            if Two.give_mtwoy_amount and Two.give_mtwoy_amount > 0 and Two.give_mtwoy_account  then
+                                if Two.give_mtwoy_account == 'cash' then
+                                    Player.Functions.AddMtwoy("cash", Two.give_mtwoy_amount)                  
+                                elseif Two.give_mtwoy_account == 'bank' then
+                                    Player.Functions.AddMtwoy("bank", Two.give_mtwoy_amount)                    
+                                end
+                            end
                             if Two.item_give ~= nil then
                                 if Two.item_give_amount and Two.item_give_amount > 0 then
                                     if Player.Functions.AddItem(Two.item_give, item_give_amount) then
@@ -363,6 +386,13 @@ for key, value in pairs(Cfg.Jobs) do
                         end
                     else
                         if Player.Functions.RemoveItem(Two.item_take, 1) then
+                            if Two.give_mtwoy_amount and Two.give_mtwoy_amount > 0 and Two.give_mtwoy_account  then
+                                if Two.give_mtwoy_account == 'cash' then
+                                    Player.Functions.AddMtwoy("cash", Two.give_mtwoy_amount)                  
+                                elseif Two.give_mtwoy_account == 'bank' then
+                                    Player.Functions.AddMtwoy("bank", Two.give_mtwoy_amount)                    
+                                end
+                            end
                             TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Two.item_take], 'remove')
                             if Two.item_give ~= nil then
                                 if Player.Functions.AddItem(Two.item_give, 1) then
@@ -377,6 +407,13 @@ for key, value in pairs(Cfg.Jobs) do
                     end
     
                 else
+                    if Two.give_mtwoy_amount and Two.give_mtwoy_amount > 0 and Two.give_mtwoy_account  then
+                        if Two.give_mtwoy_account == 'cash' then
+                            Player.Functions.AddMtwoy("cash", Two.give_mtwoy_amount)                  
+                        elseif Two.give_mtwoy_account == 'bank' then
+                            Player.Functions.AddMtwoy("bank", Two.give_mtwoy_amount)                    
+                        end
+                    end
                     if Two.item_give ~= nil then
                         if Two.item_give_amount and Two.item_give_amount > 0 then
                             if Player.Functions.AddItem(Two.item_give, Two.item_give_amount) then
@@ -385,6 +422,7 @@ for key, value in pairs(Cfg.Jobs) do
                                 TriggerClientEvent("QBCore:Notify", src, "ERROR! Something Went Wrong", "error")
                             end
                         else
+    
                             if Player.Functions.AddItem(Two.item_give, 1) then
                                 TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Two.item_give], 'add')
                             else
@@ -396,13 +434,7 @@ for key, value in pairs(Cfg.Jobs) do
                 end          
             end
     
-            if Two.give_money_amount and Two.give_money_amount > 0 and Two.give_money_account  then
-                if Two.give_money_account == 'cash' then
-                    Player.Functions.AddMoney("cash", Two.give_money_amount)                  
-                elseif Two.give_money_account == 'bank' then
-                    Player.Functions.AddMoney("bank", Two.give_money_amount)                    
-                end
-            end
+    
         end)
     end
 
@@ -410,7 +442,7 @@ for key, value in pairs(Cfg.Jobs) do
 
     if value.three then
         RegisterNetEvent('' .. value.job_name .. 'THREE', function()
-            
+                
             local src = source
             local Player = QBCore.Functions.GetPlayer(src)
             local Three = value.three
@@ -547,6 +579,13 @@ for key, value in pairs(Cfg.Jobs) do
                     if Three.item_take_amount and Three.item_take_amount > 0 then
                         if Player.Functions.RemoveItem(Three.item_take, Three.item_take_amount) then
                             TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Three.item_take], 'remove')
+                            if Three.give_mthreey_amount and Three.give_mthreey_amount > 0 and Three.give_mthreey_account  then
+                                if Three.give_mthreey_account == 'cash' then
+                                    Player.Functions.AddMthreey("cash", Three.give_mthreey_amount)                  
+                                elseif Three.give_mthreey_account == 'bank' then
+                                    Player.Functions.AddMthreey("bank", Three.give_mthreey_amount)                    
+                                end
+                            end
                             if Three.item_give ~= nil then
                                 if Three.item_give_amount and Three.item_give_amount > 0 then
                                     if Player.Functions.AddItem(Three.item_give, item_give_amount) then
@@ -568,6 +607,13 @@ for key, value in pairs(Cfg.Jobs) do
                         end
                     else
                         if Player.Functions.RemoveItem(Three.item_take, 1) then
+                            if Three.give_mthreey_amount and Three.give_mthreey_amount > 0 and Three.give_mthreey_account  then
+                                if Three.give_mthreey_account == 'cash' then
+                                    Player.Functions.AddMthreey("cash", Three.give_mthreey_amount)                  
+                                elseif Three.give_mthreey_account == 'bank' then
+                                    Player.Functions.AddMthreey("bank", Three.give_mthreey_amount)                    
+                                end
+                            end
                             TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Three.item_take], 'remove')
                             if Three.item_give ~= nil then
                                 if Player.Functions.AddItem(Three.item_give, 1) then
@@ -582,6 +628,13 @@ for key, value in pairs(Cfg.Jobs) do
                     end
     
                 else
+                    if Three.give_mthreey_amount and Three.give_mthreey_amount > 0 and Three.give_mthreey_account  then
+                        if Three.give_mthreey_account == 'cash' then
+                            Player.Functions.AddMthreey("cash", Three.give_mthreey_amount)                  
+                        elseif Three.give_mthreey_account == 'bank' then
+                            Player.Functions.AddMthreey("bank", Three.give_mthreey_amount)                    
+                        end
+                    end
                     if Three.item_give ~= nil then
                         if Three.item_give_amount and Three.item_give_amount > 0 then
                             if Player.Functions.AddItem(Three.item_give, Three.item_give_amount) then
@@ -590,6 +643,7 @@ for key, value in pairs(Cfg.Jobs) do
                                 TriggerClientEvent("QBCore:Notify", src, "ERROR! Something Went Wrong", "error")
                             end
                         else
+    
                             if Player.Functions.AddItem(Three.item_give, 1) then
                                 TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Three.item_give], 'add')
                             else
@@ -601,13 +655,7 @@ for key, value in pairs(Cfg.Jobs) do
                 end          
             end
     
-            if Three.give_money_amount and Three.give_money_amount > 0 and Three.give_money_account  then
-                if Three.give_money_account == 'cash' then
-                    Player.Functions.AddMoney("cash", Three.give_money_amount)                  
-                elseif Three.give_money_account == 'bank' then
-                    Player.Functions.AddMoney("bank", Three.give_money_amount)                    
-                end
-            end
+    
         end)
     end
 

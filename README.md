@@ -1,7 +1,7 @@
 # QB-QUICKJOBS [QBCORE & OPTIMIZED]
 ## Make Jobs In Minutes!
 
-###Check Out Docs - 
+**Check Out Docs** -  
 
 License
 

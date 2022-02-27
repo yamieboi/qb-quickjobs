@@ -15,14 +15,15 @@ Create More Jobs....
         ['blip_sprite'] = 1,
         ['blip_colour'] = 0,
         ['blip_size'] = 0.5,
+        
         ['one'] = {
-         ['text_3dlabel'] = '~r~[E]~w~ Spot1',
-         ['blip_enabled'] = false,
-         ['blip_label'] = 'STEP 1',
-         ['blip_sprite'] = 1,
-         ['blip_colour'] = 0,
-         ['blip_size'] = 0.5,
-         ['coords'] = vector3(341.65, -875.57, 29.29),
+            ['text_3dlabel'] = '~r~[E]~w~ Spot1',
+            ['blip_enabled'] = false,
+            ['blip_label'] = 'STEP 1',
+            ['blip_sprite'] = 1,
+            ['blip_colour'] = 0,
+            ['blip_size'] = 0.5,
+            ['coords'] = vector3(341.65, -875.57, 29.29),
          },
          ['two'] = {
             ['text_3dlabel'] = '~r~[E]~w~ Spot2',

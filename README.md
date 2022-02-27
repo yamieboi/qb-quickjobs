@@ -1,51 +1,26 @@
-Documentation 
-Ending in *  Meaning It is needed for the job to run properly
+# QB-QUICKJOBS [QBCORE & OPTIMIZED]
+## Make Jobs In Minutes!
 
----Main Section
+**Check Out Docs** - https://yamieboi.github.io/qb-quickjobs/
 
-[job_name'] : Sets the jobs name this is also used for the blip label on the main blip *
+**_Open Source Resource Make It Better!_**
 
-----BLIP
-['blip_enabled'] = false,---- if you want to have the blip or no
+![Repo_Thumbnail](https://user-images.githubusercontent.com/90822795/155870153-a48e409e-836a-4a96-8c74-ca9f1fc944c1.png)
 
-['blip_coords'] = vector3(x,y,z), --- sets the coords of the blip
+License
 
-['blip_sprite'] = 1, --- sets the sprite of the blip
+```
+This program is free software: you can redistribute it and/or modify!
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-['blip_colour'] = 0,--- sets the colour of the blip
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-['blip_size'] = 0.5, --- sets the scale of the blip
-
----Parts of job 
-
-['text_3dlabel'] = '[E] SOMETHING'  -- what will show up as a 3dtext *
-
-['coords'] = vector3(x,y,z) -- where you want the 3dtext/step to be at*
-
-['item_needed'] = nil, --- item needed to start step, nil means no need any item to start *
-
-['item_take'] = 'some item name from the shared.lua', -- what item will be taken, set to nil if you dont want any item given *
-
-['item_give'] = nil, -- what item will be given, set to nil if you dont want any item given *
-
-['progressbar_enabled'] = true, -- true means you want a progress bar, false will execute right away *
-
-['progressbar_label'] = 'Proccessing', -- progressbar label 
-
-['progressbar_duration'] = 10000,  -- progressbar duration  
-
-['progressbar_animdict'] = nil, -- nil <no anim, "random@shop_robbery" <example anim dict
-
-['progressbar_animname'] = nil, -- nil <no anim, "robbery_action_b" <example anim name
-
-
-
-
-FAQS
-
-Q : does the diff parts of the jobs need to be named  'one' , 'two' , 'three' ?
-
-A : yes!
-
-
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/> 
+```
 

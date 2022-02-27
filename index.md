@@ -1,11 +1,11 @@
 
 Making Jobs Made Easier!
 
-Wanted to create a job for your server! Now you can, without being a developer...
+Wanted to create a job for your server! Now you can, without being a developer (u need to have some iq tho)...
 
-### Markdown
+### Usage!
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Create More Jobs....
 
 ```markdown
 Syntax highlighted code block

@@ -1,4 +1,3 @@
-## QB-QUICKJOBS 
 
 Making Jobs Made Easier!
 

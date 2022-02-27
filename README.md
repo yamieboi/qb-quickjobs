@@ -1,7 +1,7 @@
 # QB-QUICKJOBS [QBCORE & OPTIMIZED]
 ## Make Jobs In Minutes!
 
-**Check Out Docs** -  
+**Check Out Docs** - https://yamieboi.github.io/qb-quickjobs/
 
 **_Open Source Resource Make It Better!_**
 

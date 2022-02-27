@@ -1,7 +1,7 @@
 
 Making Jobs Made Easier!
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Wanted to create a job for your server! Now you can, without being a developer...
 
 ### Markdown
 

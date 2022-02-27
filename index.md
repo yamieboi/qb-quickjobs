@@ -7,8 +7,8 @@ Wanted to create a job for your server! Now you can, without being a developer (
 
 Create More Jobs....
 
-```markdown
-   ['example_job'] = {
+```
+['example_job'] = {
         ['job_name'] = 'Example Job Name',
         ['blip_enabled'] = false,
         ['blip_coords'] = vector3(341.65, -875.57, 29.29),
@@ -61,7 +61,8 @@ Create More Jobs....
             ['item_give'] = 'water_bottle',
         }
     },
-    
+```  
+
 # Header 1
 ## Header 2
 ### Header 3
@@ -75,7 +76,7 @@ Create More Jobs....
 **Bold** and _Italic_ and `Code` text
 
 [Link](url) and ![Image](src)
-```
+
 
 For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
 

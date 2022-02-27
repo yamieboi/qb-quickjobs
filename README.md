@@ -2,7 +2,8 @@
 ## Make Jobs In Minutes!
 
 **Check Out Docs** -  
-**_Open Source Resourse Make It Better!_**
+
+**_Open Source Resource Make It Better!_**
 
 License
 

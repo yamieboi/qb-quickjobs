@@ -80,7 +80,6 @@ More Options For Steps -
 
 * Most of the options are optional 
 
-# Open Source Project - Make it better!
 
-[Link](url) and ![Image](src)
+# Open Source Project - Make it better!
 

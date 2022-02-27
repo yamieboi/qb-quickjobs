@@ -4,7 +4,8 @@
 **Check Out Docs** - https://yamieboi.github.io/qb-quickjobs/
 
 **_Open Source Resource Make It Better!_**
-[Repo_Thumbnail](https://user-images.githubusercontent.com/90822795/155870132-bf336c33-dbb8-46c0-a272-478caae25464.png)
+![Repo_Thumbnail](https://user-images.githubusercontent.com/90822795/155870153-a48e409e-836a-4a96-8c74-ca9f1fc944c1.png)
+
 License
 
 ```

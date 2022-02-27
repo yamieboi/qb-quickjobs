@@ -45,7 +45,7 @@ Create More Jobs @config.lua ....
         }
     },
 ```  
-**More Options For Steps - **
+More Options For Steps - 
 
  **Progress Bar**
 ```
@@ -77,6 +77,7 @@ Create More Jobs @config.lua ....
  ['blip_colour'] = 0,
  ['blip_size'] = 0.5,
 ```
+
 * Most of the options are optional 
 
 # Open Source Project - Make it better!
